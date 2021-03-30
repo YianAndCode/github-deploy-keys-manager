@@ -1,5 +1,7 @@
 # GitHub Deploy Keys Manager
 
+English | [中文](README_zh.md)
+
 ## What is
 
 When you use deploy key to deploy multiple repositories on one server, you will need to generate a dedicated key pair for each one (GitHub does not allow you to reuse a deploy key for multiple repositories), `GitHub Deploy Keys Manager` (I call it `gdkm` below) can help you manage your deploy keys easily.
