@@ -1,5 +1,5 @@
 BIN_DIR = ./bin
-PROJ_NAME = github-deploy-keys-manager
+PROJ_NAME = gdkm
 
 all: gdkm
 
