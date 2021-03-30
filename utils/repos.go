@@ -65,7 +65,11 @@ func (r *Repo) parseSSHUrl(url string) (isMatch bool, urlMap map[string]string) 
 }
 
 // GetHostAlias return a alias of this repo
-func (r *Repo) GetAlias() string {
+func (r *Repo) GetAlias(withoutOwner bool) string {
+	if withoutOwner {
+		return r.Host + "-" + r.Name
+	}
+
 	return r.Host + "-" + r.Owner + "-" + r.Name
 }
 
