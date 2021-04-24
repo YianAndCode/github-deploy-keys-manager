@@ -60,7 +60,19 @@ func main() {
 
 	generateKey(keyPath, repoAlias, force)
 
-	updateSSHConfig()
+	sshConfig := fmt.Sprintf(
+		"Host %s\n    Hostname %s\n    IdentityFile=%s\n\n",
+		repoAlias, repo.Host, getKeyFileName(keyPath, repoAlias)+".id_rsa",
+	)
+	err = updateSSHConfig(sshConfig)
+	if err != nil {
+		fmt.Printf("Key generated, buy error occur while update ssh config: %s", err.Error())
+		return
+	}
+	fmt.Printf(
+		"Deploy key generated, the public key is stored in %s\n\nYour new repo url is: %s@%s:%s/%s.git\n",
+		getKeyFileName(keyPath, repoAlias)+".id_rsa.pub", repo.SshUser, repoAlias, repo.Owner, repo.Name,
+	)
 }
 
 func file_exist(filename string) (bool, error) {
@@ -115,6 +127,18 @@ func generateKey(_keyPath, _repoAlias string, _force bool) {
 	}
 }
 
-func updateSSHConfig() {
-	// TODO:
+func updateSSHConfig(config string) error {
+	sshConfigFile := filepath.Join(os.Getenv("HOME"), ".ssh", "config")
+	f, err := os.OpenFile(sshConfigFile, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
+	if err != nil {
+		return err
+	}
+
+	defer f.Close()
+
+	if _, err = f.WriteString(config); err != nil {
+		return err
+	}
+
+	return nil
 }

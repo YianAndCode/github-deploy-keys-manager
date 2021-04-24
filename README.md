@@ -36,4 +36,4 @@ If you want to specify key path, you can pass the path through `-key-path=`:
 
 ## TODO:
 
- - Modify ssh_config file automatically
+ - [x] Modify ssh_config file automatically

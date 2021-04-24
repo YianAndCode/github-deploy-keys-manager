@@ -36,4 +36,4 @@ make
 
 ## TODO:
 
- - 自动更新 ssh_config
+ - [x] 自动更新 ssh_config
