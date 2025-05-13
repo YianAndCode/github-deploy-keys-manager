@@ -1,5 +1,7 @@
 module github.com/YianAndCode/github-deploy-keys-manager
 
-go 1.16
+go 1.23.0
 
-require golang.org/x/crypto v0.31.0
+require golang.org/x/crypto v0.35.0
+
+require golang.org/x/sys v0.30.0 // indirect
